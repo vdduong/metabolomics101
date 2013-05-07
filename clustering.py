@@ -128,3 +128,20 @@ def clustering_assignment(list_point, tol_H) :
         #print filter_clustering_complet
         #print '*'*5
         return filter_clustering, filter_clustering_complet
+        
+def distance_(list_1, list_2) :
+	distance = 0.0
+	for item_1 in list_1 :
+		atom_local_1 = item_1[0]
+		cs_local_1 = item_1[1]
+		for item_2 in list_2 :
+			if item_2[0] == atom_local_1 :
+				cs_local_2 = item_2[1]
+				if 'H' in atom_local_1 :
+					distance+= (cs_local_1 - cs_local_2)**2/0.5**2
+				elif 'C' in atom_local_1 :
+					distance+= (cs_local_1 - cs_local_2)**2/0.98**2
+				elif 'N' in atom_local_1 :
+					distance+= (cs_local_1 - cs_local_2)**2/2.5**2
+	distance = math.sqrt(distance)
+	return distance
